@@ -6,13 +6,44 @@ This is an interactive CLI tool for managing semantic knowledge using ChromaDB v
 
 This technical interview evaluates candidates by providing a comprehensive semantic search system with multiple datasets and letting candidates demonstrate their technical depth, system design skills, and business understanding through self-guided exploration and improvements.
 
-## Setup (Already Done in Codespace!)
+## Environment Setup
 
-The environment is pre-configured with:
+### Option 1: GitHub Codespaces (Recommended)
+
+The fastest way to get started is using GitHub Codespaces:
+
+1. **Prerequisites**: Active GitHub account
+2. Navigate to the repository on GitHub
+3. Click the green "Code" button
+4. Select "Codespaces" tab
+5. Click "Create codespace on main"
+
+The environment will automatically configure with:
 
 - Python 3.12
 - ChromaDB
 - Sentence Transformers (BGE and E5 models)
+
+### Option 2: Local Development with DevContainer
+
+If you prefer running locally, you can use the devcontainer configuration:
+
+**Prerequisites:**
+
+- Docker Desktop (installed and running)
+- VS Code or Cursor IDE
+- Dev Containers extension for VS Code/Cursor
+
+**Setup Steps:**
+
+1. Clone the repository
+2. Open the folder in VS Code/Cursor
+3. Install the "Dev Containers" extension if not already installed
+4. Open the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P` on Mac)
+5. Type "Dev Containers: Rebuild and Reopen in Container"
+6. Wait for the container to build and configure
+
+The devcontainer will automatically set up the same environment as Codespaces with all dependencies pre-installed.
 
 ## Quick Start
 
@@ -38,7 +69,8 @@ Then in the interactive prompt:
 ```
 
 ### 3. List all entries
-```
+
+```bash
 > ?
 ```
 
@@ -47,15 +79,18 @@ Then in the interactive prompt:
 The repository includes three distinct datasets for comprehensive evaluation:
 
 ### 📊 `data/sample_data.json` - Keeper Product Knowledge
+
 **Purpose**: General semantic search testing with Keeper Security domain knowledge
 
-**Content**: 
+**Content**:
+
 - Company descriptions (Keeper Security, KeeperAI, zero-knowledge platform)
 - Product capabilities (password management, PAM, threat detection)
 - Technical details (ARAM events, session recordings, behavioral analysis)
 - Compliance information (FedRAMP authorization, government customers)
 
 **Sample Entry**:
+
 ```json
 {
    "id": "fact_1704153600000", 
@@ -65,9 +100,11 @@ The repository includes three distinct datasets for comprehensive evaluation:
 ```
 
 ### 🏢 `data/account_data.json` - Customer Account Intelligence
+
 **Purpose**: Real-world customer data for business intelligence and analytics workflows
 
 **Content**: 20 detailed Salesforce customer accounts including:
+
 - **Account Profiles**: Names, industries, employee counts, contract values ($18K-$680K ARR)
 - **Product Usage**: KeeperPAM versions (Enterprise/Business/GovCloud), Secrets Manager, RBI, EPM
 - **Health Metrics**: Health scores (41-94/100), adoption rates (33-95%), NPS scores (4-10)
@@ -76,6 +113,7 @@ The repository includes three distinct datasets for comprehensive evaluation:
 - **Compliance**: FedRAMP requirements, SIEM integrations (Splunk, QRadar, Sentinel)
 
 **Sample Entries**:
+
 - **Healthy Account**: Acme Financial Services - 85/100 health, 92% adoption, strong Splunk integration
 - **At-Risk Account**: TechCorp Industries - 45/100 health, 38% adoption, 18 support tickets, no SIEM
 - **Critical Account**: RetailMax Corporation - 41/100 health, 33% adoption, executive sponsor left
@@ -90,9 +128,11 @@ The repository includes three distinct datasets for comprehensive evaluation:
 ```
 
 ### 📈 `data/churn_prediction.json` - Customer Success Analytics  
+
 **Purpose**: Analytics insights and patterns for predictive modeling and business intelligence
 
 **Content**: Customer success analytics including:
+
 - **Churn Prediction Patterns**: Onboarding timelines, adoption patterns, retention correlations
 - **Product Impact Analysis**: KeeperAI adoption → 65% higher renewal rates, feature usage correlations
 - **Support Analytics**: Ticket resolution patterns, onboarding delays → churn risk
@@ -115,41 +155,47 @@ The repository includes three distinct datasets for comprehensive evaluation:
 
 ### Phase 1: Understanding & Technical Analysis
 
-**Explore the system and demonstrate deep ML understanding**
+#### **Explore the system and demonstrate deep ML understanding**
 
-**Areas to investigate:**
+#### **Areas to investigate:**
+
 - How embedding models work (BGE vs E5 differences)  
 - Model architecture tradeoffs (speed vs accuracy vs memory)
 - Optimization opportunities (quantization, mixed precision)
 - Scale considerations (1M documents, high QPS requirements, updates to embedding models)
 
-**Questions candidates might explore:**
+#### **Questions candidates might explore:**
+
 - What are the quantization vs accuracy tradeoffs for semantic search?
 - How would you architect this for production scale?
 - What alternatives to sentence-transformers exist?
 
 ### Phase 2: Deep Dive & Business Fit
 
-**Explore LLM integration possibilities**
+#### **Explore LLM integration possibilities**
+
 - Could this be enhanced with query expansion?
 - How might answer synthesis improve over raw document retrieval?
 - What about synthetic data generation for testing?
 - Design agentic systems that can reason and act on search results
 
-**Transform into analytics and business intelligence system**  
+#### **Transform into analytics and business intelligence system**  
+
 - Design data warehouse schemas for the account data
 - Implement EDA workflows and correlation analysis
 - Traditional feature engineering vs embedding-based approaches
 
 ### Phase 3: System Design & Implementation
-**Demonstrate architectural thinking and practical implementation**
+
+#### **Demonstrate architectural thinking and practical implementation**
 
 - Explore bugs and address quality/functionality issues
 - Multi-interface architecture (CLI, REST API, Web UI, Python SDK)
 - Production considerations (monitoring, caching, testing, error handling)
 - Privacy and compliance (FedRAMP, audit trails, explainable AI)
 
-**Implementation focus:**
+#### **Implementation focus:**
+
 - Pick specific areas for enhancement and implement them
 - Show understanding of production constraints
 - Demonstrate business alignment with Keeper's needs
@@ -181,18 +227,21 @@ The repository includes three distinct datasets for comprehensive evaluation:
 Consider exploring these areas:
 
 ### Code Quality
+
 - Error handling for malformed JSON data
 - Input validation and sanitization
 - Edge case handling (empty queries, special characters)
 - Type hints and documentation
 
 ### Performance  
+
 - Query result caching
 - Batch operations optimization
 - Collection switching efficiency
 - Memory usage for large datasets
 
 ### User Experience
+
 - Search relevance scoring display
 - Colored output improvements
 - Better error messages
@@ -200,6 +249,7 @@ Consider exploring these areas:
 - Progress indicators for long operations
 
 ### Features
+
 - Filtering by metadata (industry, health_score, etc.)
 - Advanced search operators (AND, OR, NOT)
 - Fuzzy matching threshold configuration
@@ -207,18 +257,21 @@ Consider exploring these areas:
 - Export/Import format options (CSV, JSONL)
 
 ### Testing
+
 - Unit tests for core functions
 - Integration tests for ChromaDB operations
 - Sample data validation tests
 - Performance benchmarks
 
 ### Architecture
+
 - Separation of concerns (CLI, DB operations, formatting)
 - Configuration management
 - Plugin system for different embedding models
 - API wrapper for programmatic access
 
 ### Advanced Capabilities
+
 - Hybrid search (semantic + keyword retrieval)
 - Metadata filtering with complex queries
 - Cross-encoder reranking for relevance
@@ -228,12 +281,14 @@ Consider exploring these areas:
 ## Business Context & Applications
 
 ### Keeper Security Domain Applications
+
 - **Threat Detection**: Use account behavior patterns to identify insider threats
 - **Customer Success**: Early warning systems for churn risk and expansion opportunities  
 - **Compliance**: Automated FedRAMP documentation and audit trail generation
 - **Product Analytics**: Understanding feature adoption patterns and usage correlations
 
 ### Real-World Integration Possibilities
+
 - **Session Recording Analysis**: Search across behavioral patterns in video/text transcripts
 - **ARAM Event Processing**: Real-time threat scoring based on command analysis
 - **Support Ticket Intelligence**: Pattern analysis for automated routing and resolution
@@ -242,6 +297,7 @@ Consider exploring these areas:
 ## Advanced Usage
 
 ### Working with Different Datasets
+
 ```bash
 # Load product knowledge
 python ingest_knowledge_interactive.py --load-file data/sample_data.json
@@ -254,6 +310,7 @@ python ingest_knowledge_interactive.py --load-file data/churn_prediction.json
 ```
 
 ### Working with Multiple Models
+
 ```bash
 # Switch to larger model
 python ingest_knowledge_interactive.py -em bge-large
